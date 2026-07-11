@@ -1,5 +1,5 @@
 app = "frolladb"
-primary_region = "ams"
+primary_region = "syd"
 
 [http_service]
   auto_start_machines = true
