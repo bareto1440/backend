@@ -1,0 +1,28 @@
+{
+  "name": "store-backend",
+  "version": "1.0.0",
+  "description": "Clothing store backend: accounts, product variants, reviews, search, Stripe checkout",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "create-admin-ui": "node scripts/createAdmin.js --serve",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.4",
+    "resend": "^4.0.1",
+    "stripe": "^16.12.0",
+    "multer": "^1.4.4"
+  }
+}
