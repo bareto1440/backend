@@ -5,11 +5,11 @@
   "main": "server.js",
   "type": "commonjs",
   "engines": {
-    "node": ">=22.5.0"
+    "node": "22.x"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
+    "start": "node --experimental-sqlite server.js",
+    "dev": "node --watch --experimental-sqlite server.js",
     "create-admin-ui": "node scripts/createAdmin.js --serve",
     "test": "node --test"
   },
