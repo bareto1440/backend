@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const webhookRoutes = require('./routes/webhook');
 const authRoutes = require('./routes/auth');
@@ -12,6 +13,7 @@ const offerRoutes = require('./routes/offers');
 const favoriteRoutes = require('./routes/favorites');
 const adminProductRoutes = require('./routes/adminProducts');
 const adminOrderRoutes = require('./routes/adminOrders');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 app.use(cors());
@@ -24,6 +26,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/webhook', webhookRoutes);
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser(process.env.SESSION_SECRET || 'dev-secret'));
 
 // ---- Public / buyer-facing ----
 app.use('/auth', authRoutes);
@@ -36,6 +40,7 @@ app.use('/favorites', favoriteRoutes);
 // ---- Admin-only (gated inside each router) ----
 app.use('/admin/products', adminProductRoutes);
 app.use('/admin/orders', adminOrderRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 
