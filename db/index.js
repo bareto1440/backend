@@ -63,6 +63,8 @@ if (isPostgresConfigured()) {
     },
     max: 10
   });
+      console.log("Using PostgreSQL database");
+
 
 
   let initialized = false;
