@@ -16,7 +16,25 @@ const adminOrderRoutes = require('./routes/adminOrders');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    "https://frolar-cyan.vercel.app",
+    "http://localhost:5173"
+  ],
+  credentials: true,
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization"
+  ]
+}));
+
+app.use((req, res, next) => {
+  console.log("METHOD:", req.method);
+  console.log("PATH:", req.path);
+  console.log("AUTH HEADER:", req.headers.authorization);
+  next();
+});
 
 // Serve uploaded images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
